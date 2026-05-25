@@ -1,6 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
+interface Order {
+  id: string;
+  userId: string;
+  total: number;
+  status: string;
+}
+
 export function OrdersPage() {
   const { data, isLoading } = useQuery({
     queryKey: ["orders"],
@@ -22,7 +29,7 @@ export function OrdersPage() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((order: any) => (
+          {data?.map((order: Order) => (
             <tr key={order.id} className="border-b">
               <td className="p-2">{order.id}</td>
               <td className="p-2">{order.userId}</td>
